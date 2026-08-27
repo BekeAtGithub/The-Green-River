@@ -1,1 +1,718 @@
-.
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>The Green River</title>
+  <style>
+    body {
+      margin: 0;
+      background: #f4efe6;
+      color: #1c1915;
+      font: 18px/1.55 Georgia, "Times New Roman", serif;
+    }
+    .wrap {
+      max-width: 42rem;
+      margin: 0 auto;
+      padding: 2.5rem 1.4rem 5rem;
+    }
+    h1 {
+      font-size: 1.15rem;
+      font-weight: normal;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin: 0 0 0.4rem;
+    }
+    .sub {
+      color: #5c564c;
+      font-size: 0.92rem;
+      margin: 0 0 1.6rem;
+    }
+    .map-box {
+      background: #eceae7;
+      border: 1px solid #c9c4bc;
+      padding: 0.6rem 0.6rem 0.7rem;
+      margin: 0 0 2.4rem;
+    }
+    .map-box svg {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+    .map-key {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 0.7rem 0 0;
+      font: 12px/1.45 system-ui, sans-serif;
+      color: #5c564c;
+    }
+    .map-key th {
+      text-align: left;
+      font-weight: 600;
+      padding: 0.35rem 0.4rem;
+      border-bottom: 1px solid #c9c4bc;
+      color: #3d3830;
+    }
+    .map-key td {
+      padding: 0.28rem 0.4rem;
+      border-bottom: 1px solid #ddd9d2;
+    }
+    .map-key th:first-child,
+    .map-key td:first-child {
+      width: 2rem;
+      color: #8a8680;
+    }
+    .map-key th:last-child,
+    .map-key td:last-child {
+      text-align: right;
+      font-variant-numeric: tabular-nums;
+    }
+    .map-key tbody tr:last-child td {
+      border-bottom: none;
+    }
+    .map-note {
+      font-size: 0.78rem;
+      color: #5c564c;
+      margin: 0.55rem 0 0;
+      padding: 0 0.3rem;
+      font-family: system-ui, sans-serif;
+    }
+    h2 {
+      font-size: 1.05rem;
+      font-weight: normal;
+      margin: 2.4rem 0 0.9rem;
+      color: #3d3830;
+    }
+    p { margin: 0 0 0.95rem; }
+    p.break { margin-top: 1.6rem; }
+  </style>
+</head>
+<body>
+  <article class="wrap">
+    <h1>The Green River</h1>
+
+    <div class="map-box">
+      <!-- Same geometry as the canvas: Veyloth at center, 100 / 200 km rings, full known world -->
+      <svg viewBox="0 0 720 720" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Known world, Veyloth at center, 100 and 200 kilometer rings">
+        <rect width="720" height="720" fill="#eceae7"/>
+
+        <!-- jungle fill + hatch -->
+        <rect x="0" y="0" width="720" height="290" fill="#d8d6d2"/>
+        <line x1="-40" y1="0" x2="0" y2="290" stroke="#c4c2bd" stroke-width="6"/>
+        <line x1="-2" y1="0" x2="38" y2="290" stroke="#c4c2bd" stroke-width="6"/>
+        <line x1="36" y1="0" x2="76" y2="290" stroke="#c4c2bd" stroke-width="6"/>
+        <line x1="74" y1="0" x2="114" y2="290" stroke="#c4c2bd" stroke-width="6"/>
+        <line x1="112" y1="0" x2="152" y2="290" stroke="#c4c2bd" stroke-width="6"/>
+        <line x1="150" y1="0" x2="190" y2="290" stroke="#c4c2bd" stroke-width="6"/>
+        <line x1="188" y1="0" x2="228" y2="290" stroke="#c4c2bd" stroke-width="6"/>
+        <line x1="226" y1="0" x2="266" y2="290" stroke="#c4c2bd" stroke-width="6"/>
+        <line x1="264" y1="0" x2="304" y2="290" stroke="#c4c2bd" stroke-width="6"/>
+        <line x1="302" y1="0" x2="342" y2="290" stroke="#c4c2bd" stroke-width="6"/>
+        <line x1="340" y1="0" x2="380" y2="290" stroke="#c4c2bd" stroke-width="6"/>
+        <line x1="378" y1="0" x2="418" y2="290" stroke="#c4c2bd" stroke-width="6"/>
+        <line x1="416" y1="0" x2="456" y2="290" stroke="#c4c2bd" stroke-width="6"/>
+        <line x1="454" y1="0" x2="494" y2="290" stroke="#c4c2bd" stroke-width="6"/>
+        <line x1="492" y1="0" x2="532" y2="290" stroke="#c4c2bd" stroke-width="6"/>
+        <line x1="530" y1="0" x2="570" y2="290" stroke="#c4c2bd" stroke-width="6"/>
+        <line x1="568" y1="0" x2="608" y2="290" stroke="#c4c2bd" stroke-width="6"/>
+        <line x1="606" y1="0" x2="646" y2="290" stroke="#c4c2bd" stroke-width="6"/>
+        <line x1="644" y1="0" x2="684" y2="290" stroke="#c4c2bd" stroke-width="6"/>
+        <line x1="682" y1="0" x2="722" y2="290" stroke="#c4c2bd" stroke-width="6"/>
+        <line x1="720" y1="0" x2="760" y2="290" stroke="#c4c2bd" stroke-width="6"/>
+        <line x1="758" y1="0" x2="798" y2="290" stroke="#c4c2bd" stroke-width="6"/>
+
+        <path d="M 0 298 C 80 272, 140 296, 220 280 S 340 294, 400 274 S 560 298, 720 284 L 720 0 L 0 0 Z" fill="#cac8c3"/>
+        <path d="M 0 290 C 90 268, 160 294, 250 276 S 370 292, 430 270 S 580 296, 720 282" fill="none" stroke="#3d3a36" stroke-width="3"/>
+
+        <!-- east–west road, parallel to the jungle -->
+        <path d="M 75 395 C 180 377, 300 365, 360 371 S 480 383, 645 392" fill="none" stroke="#3d3a36" stroke-width="3"/>
+        <!-- Green River coming out of the trees -->
+        <path d="M 387 290 C 393 320, 381 350, 369 371" fill="none" stroke="#8a8680" stroke-width="2"/>
+        <!-- south track: Veyloth → Dry Fork → Ral Koda, The Glare -->
+        <path d="M 348 380 C 330 428, 300 473, 288 476" fill="none" stroke="#b0aaa2" stroke-width="1.5" stroke-dasharray="4 4"/>
+        <path d="M 288 476 C 295 490, 305 505, 310.5 515" fill="none" stroke="#b0aaa2" stroke-width="1.5" stroke-dasharray="4 4"/>
+        <!-- branch to Sotha Bal -->
+        <path d="M 330 428 C 335 438, 340 445, 342 450.5" fill="none" stroke="#b0aaa2" stroke-width="1.5" stroke-dasharray="4 4"/>
+        <path d="M 75 386 C 240 362, 390 374, 645 389" fill="none" stroke="#b0aaa2" stroke-width="1" stroke-dasharray="8 7"/>
+
+        <ellipse cx="402" cy="356" rx="27" ry="15" fill="#d8d6d2" stroke="#b0aaa2" stroke-width="1"/>
+        <ellipse cx="300" cy="360.5" rx="24" ry="13.5" fill="#d8d6d2" stroke="#b0aaa2" stroke-width="1"/>
+        <ellipse cx="369" cy="375.5" rx="33" ry="10.5" fill="#eceae7" stroke="#b0aaa2" stroke-width="1" stroke-dasharray="3 3"/>
+
+        <!-- 100 km / 200 km rings, centered on Veyloth -->
+        <circle cx="360" cy="368" r="150" fill="none" stroke="#3d3a36" stroke-dasharray="6 6" stroke-width="1.5" opacity="0.7"/>
+        <circle cx="360" cy="368" r="300" fill="none" stroke="#3d3a36" stroke-dasharray="6 6" stroke-width="1.5" opacity="0.7"/>
+
+        <text x="16" y="22" font-size="12" fill="#5c564c" font-family="system-ui, sans-serif">JUNGLE</text>
+        <text x="16" y="704" font-size="12" fill="#8a8680" font-family="system-ui, sans-serif">SOUTHERN WASTES</text>
+        <text x="368" y="212" font-size="10" fill="#8a8680" font-family="system-ui, sans-serif">100 km</text>
+        <text x="368" y="62" font-size="10" fill="#8a8680" font-family="system-ui, sans-serif">200 km</text>
+        <text x="692" y="372" font-size="10" fill="#8a8680" font-family="system-ui, sans-serif">E</text>
+        <text x="14" y="372" font-size="10" fill="#8a8680" font-family="system-ui, sans-serif">W</text>
+        <text x="356" y="36" font-size="10" fill="#8a8680" font-family="system-ui, sans-serif">N</text>
+
+        <!-- 1 Veyloth -->
+        <circle cx="360" cy="368" r="8" fill="#f7f5f2" stroke="#3d6ea8" stroke-width="1.5"/>
+        <text x="360" y="371.5" text-anchor="middle" font-size="8" fill="#1c1915" font-family="system-ui, sans-serif">1</text>
+        <text x="374" y="372" font-size="11" fill="#1c1915" font-family="system-ui, sans-serif">Veyloth</text>
+        <!-- 2 The Green River -->
+        <circle cx="387" cy="290" r="8" fill="#f7f5f2" stroke="#3d6ea8" stroke-width="1.5"/>
+        <text x="387" y="293.5" text-anchor="middle" font-size="8" fill="#1c1915" font-family="system-ui, sans-serif">2</text>
+        <text x="401" y="280" font-size="11" fill="#1c1915" font-family="system-ui, sans-serif">The Green River</text>
+        <!-- 3 West Outpost -->
+        <circle cx="258" cy="359" r="8" fill="#f7f5f2" stroke="#1c1915" stroke-width="1.5"/>
+        <text x="258" y="362.5" text-anchor="middle" font-size="8" fill="#1c1915" font-family="system-ui, sans-serif">3</text>
+        <text x="244" y="375" text-anchor="end" font-size="11" fill="#1c1915" font-family="system-ui, sans-serif">West Outpost</text>
+        <!-- 4 Drenovar -->
+        <circle cx="423" cy="344" r="8" fill="#f7f5f2" stroke="#1c1915" stroke-width="1.5"/>
+        <text x="423" y="347.5" text-anchor="middle" font-size="8" fill="#1c1915" font-family="system-ui, sans-serif">4</text>
+        <text x="437" y="360" font-size="11" fill="#1c1915" font-family="system-ui, sans-serif">Drenovar</text>
+        <!-- 5 Sotha Bal -->
+        <circle cx="342" cy="450.5" r="8" fill="#f7f5f2" stroke="#1c1915" stroke-width="1.5"/>
+        <text x="342" y="454" text-anchor="middle" font-size="8" fill="#1c1915" font-family="system-ui, sans-serif">5</text>
+        <text x="356" y="454.5" font-size="11" fill="#1c1915" font-family="system-ui, sans-serif">Sotha Bal</text>
+        <!-- 6 Dry Fork -->
+        <circle cx="288" cy="476" r="8" fill="#f7f5f2" stroke="#3d6ea8" stroke-width="1.5"/>
+        <text x="288" y="479.5" text-anchor="middle" font-size="8" fill="#1c1915" font-family="system-ui, sans-serif">6</text>
+        <text x="274" y="480" text-anchor="end" font-size="11" fill="#1c1915" font-family="system-ui, sans-serif">Dry Fork</text>
+        <!-- 7 Ral Koda, The Glare (selected) -->
+        <circle cx="310.5" cy="515" r="11" fill="none" stroke="#3d6ea8" stroke-width="1.5"/>
+        <circle cx="310.5" cy="515" r="8" fill="#3d6ea8" stroke="#8a8680" stroke-width="1.5"/>
+        <text x="310.5" y="518.5" text-anchor="middle" font-size="8" fill="#fff" font-family="system-ui, sans-serif">7</text>
+        <text x="324.5" y="531" font-size="11" fill="#1c1915" font-family="system-ui, sans-serif">Ral Koda, The Glare</text>
+        <!-- 8 Trovgar, East Market -->
+        <circle cx="612" cy="395" r="8" fill="#f7f5f2" stroke="#1c1915" stroke-width="1.5"/>
+        <text x="612" y="398.5" text-anchor="middle" font-size="8" fill="#1c1915" font-family="system-ui, sans-serif">8</text>
+        <text x="598" y="411" text-anchor="end" font-size="11" fill="#1c1915" font-family="system-ui, sans-serif">Trovgar, East Market</text>
+        <!-- 9 Ghor Vhuul -->
+        <circle cx="127.5" cy="380" r="8" fill="#f7f5f2" stroke="#8a8680" stroke-width="1.5"/>
+        <text x="127.5" y="383.5" text-anchor="middle" font-size="8" fill="#1c1915" font-family="system-ui, sans-serif">9</text>
+        <text x="141.5" y="396" font-size="11" fill="#1c1915" font-family="system-ui, sans-serif">Ghor Vhuul</text>
+      </svg>
+      <table class="map-key">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>Population</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>1</td><td>Veyloth</td><td>53,724</td></tr>
+          <tr><td>2</td><td>The Green River</td><td>0</td></tr>
+          <tr><td>3</td><td>West Outpost</td><td>3,432</td></tr>
+          <tr><td>4</td><td>Drenovar</td><td>5,653</td></tr>
+          <tr><td>5</td><td>Sotha Bal</td><td>1,256</td></tr>
+          <tr><td>6</td><td>Dry Fork</td><td>7</td></tr>
+          <tr><td>7</td><td>Ral Koda</td><td>0</td></tr>
+          <tr><td>8</td><td>Trovgar, East Market</td><td>2,379</td></tr>
+          <tr><td>9</td><td>Ghor Vhuul</td><td>??</td></tr>
+        </tbody>
+      </table>
+      <p class="map-note">Rings are 100 km and 200 km from Veyloth. Same map as the canvas. Numbers match the list.</p>
+    </div>
+
+    <p>Ral Koda. People just called it The Glare now. Used to be a town. Now it was just decrepit sunburnt shacks, partially buried by a decade of sandstorms.</p>
+
+    <p>The surrounding area was a vast endless pale flatland. The light was blinding, the sun reflecting off the surface like a beam glaring off a mirror.</p>
+
+    <p>“That’s why they call it The Glare now,” groaned Dren, a forty-something year old man squinting his eyes, sitting in an old rocking chair on the porch of a long abandoned tavern.</p>
+
+    <p>Sheo responded, reminiscing. “It’s been about thirty years since we used to roll around in these green grassy fields… and remember that nice little creek that used to run over there…” Sheo pointed at a sandy ditch.</p>
+
+    <p>“Hah, yeah I remember. I still hold the record for largest crawfish.” Dren teased, nudging Sheo.</p>
+
+    <p>“Yeah... I guess I can't beat that one unless we're counting fossils. But hey, I remember trapping a rabbit in the bush by that tree over there… remember that lush, thick, green healthy tree?” Sheo said as he pointed towards the ragged dead acacia in the distance.</p>
+
+    <p>Dren took a swig from an ancient bottle of whiskey he found in the tavern and passed it over to Sheo.</p>
+
+    <p>“They’re out there,” he said.</p>
+
+    <p>Sheo did not look at him. He was watching the empty horizon.</p>
+
+    <p>“There’s nothing out there, Dren.”</p>
+
+    <p>“You don’t know that.”</p>
+
+    <p>“I know what I’m looking at.”</p>
+
+    <p>Wind howled in the distance like a flute, spinning up dust devil twisters in the prairie. No one else was in Ral Koda. Nobody came out here.</p>
+
+    <p>“Listen man… this place was green thirty years ago… we grew up around here. And now it’s a desolate wasteland. There’s something out there, a demon sucking the moisture and life out of these lands.”</p>
+
+    <p>Sheo shook his head.</p>
+
+    <p>“There’s nothing. That’s the whole of it. You keep waiting for a face or demon or something explainable to come out of the desert and it isn’t going to.”</p>
+
+    <p>They sat in silence, staring off into the vast southern wastes. An infinite empty void, an incomprehensible scale of absolute absence of anything. It was like staring into space.</p>
+
+    <p>After a while Sheo said, “Sotha Bal still has the pastures. Wells are holding.”</p>
+
+    <p>“For now.”</p>
+
+    <p>“For now.”</p>
+
+    <p>Dren reached his hand over as Sheo passed the bottle of whiskey back, and took another drink.</p>
+
+    <p>“The demon is coming for Sotha Bal too, Sheo,” he said. “You can see it in the land. Gets drier each year.”</p>
+
+    <p>Sheo, annoyed, grabbed the bottle of whiskey back.</p>
+
+    <p>“It’s probably just a dry season. Why are you so fixated on a stupid sand demon.”</p>
+
+    <p>“A dry season? Sheo, this has been happening for decades.”</p>
+
+    <p>Sheo snapped back frustrated, raising his voice with a temper. “Well maybe the rain will come back, and we can return home. Ain’t no fucking demon out here, just some bad years.”</p>
+
+    <p>Sheo’s hands trembled, wrapped around the bottle.</p>
+
+    <p>Dren sighed. “I know… it was stressful and traumatic growing up with everyone having to migrate away. I know we're all still grieving over our hometown…”</p>
+
+    <p>“Who can really get over that?” asked Sheo.</p>
+
+    <p>They sat for a while longer, staring off into the void.</p>
+
+    <p>“Well, that was a pretty nice bottle… extra long aged whiskey, huehue,” guffawed Dren as he stood up, getting ready to head out.</p>
+
+    <p>“Yeah, we should head back to Sotha Bal and give our annual report… Aside from finding a bottle of fine rye in the broom closet of the ol' tavern, nothing has changed,” spat Sheo.</p>
+
+    <p>“Still the same lifeless ass place as before, maybe even worse than last year…” Dren responded.</p>
+
+    <p>“Alright… all packed? Let’s head to Dry Fork, camp there and go home to Sotha Bal from there.”</p>
+
+    <p>Without another word, the men headed northwest towards Dry Fork, the main checkpoint between The Glare and Sotha Bal.</p>
+
+    <p>The road between Ral Koda and Dry Fork was about thirty kilometers of nothing. Pale ground, blue sky, scarcely littered scraggly dead trees and bushes. They walked it on foot, all day, in the heat. If there weren't any footprints in the sand, you wouldn't even really know which way you came from. By late afternoon they approached the checkpoint.</p>
+
+    <p>Dry Fork was an intersection in the middle of nowhere. There used to be a river flowing through which dried out. You could still find the old bridge arching over the paleochannel.</p>
+
+    <p>This place was flat and barren, no forest, no villages, just Dry Fork. The intersection had a couple signs pointing to some far away destinations, one of which being Ral Koda.</p>
+
+    <p>Seven people lived here. The officer and six soldiers. Three tents. An armed patrol that barely served any purpose.</p>
+
+    <p>As Dren and Sheo approached Dry Fork intersection, they saw an impaled hyena hanging off a spear driven into the ground. Fresh, gruesome, bloody, flies foaming at its mouth.</p>
+
+    <p>An officer from the armed patrol walked over, greeting Sheo and Dren.</p>
+
+    <p>“Well, how was The Glare?”</p>
+
+    <p>“It doesn’t really look any different than it looks here, just more desert and nothingness,” explained Sheo.</p>
+
+    <p>“Ah, sounds boring,” replied the officer.</p>
+
+    <p>“Hey what’s with the hyena?” asked Dren, wondering why that wasn’t the first topic of the conversation.</p>
+
+    <p>The officer glanced at the corpse like it was another piece of junk in the sand. Turned around and yelled back to the six men in the camp.</p>
+
+    <p>“Hey did any of you kill this hyena?”</p>
+
+    <p>They looked over and shook their heads. No.</p>
+
+    <p>Dren stared at it.</p>
+
+    <p>“That doesn’t make any sense… this hyena wasn’t here yesterday when we came through. How could you miss someone coming through here and doing this?”</p>
+
+    <p>“I have no idea. And I doubt anyone really cares,” the officer said. “So anyways… a courier came through this morning with some news.”</p>
+
+    <p>“What do you mean nobody cares?” Dren said.</p>
+
+    <p>“Someone walked through your checkpoint and did that,” Sheo said. “How does nobody care?”</p>
+
+    <p>The officer shrugged.</p>
+
+    <p>“I’m not going out there to look. I’ve been posted here long enough. I just want to go home. Let’s go get some shade, drink some tea and I’ll show you the documents.”</p>
+
+    <p>Dren, Sheo and the officer walked over to the main tent, entering for shade. The tent’s floor was cluttered with carpets and cushions, a fire in the center, an iron pot full of tea. They lounged, got comfortable, and the officer opened the documents, shared them and explained.</p>
+
+    <p>“Don’t go west. Mount Gor Luut had a landslide, burying the town of Gor Vhuul.”</p>
+
+    <p>Sheo frowned.</p>
+
+    <p>“How many got out?”</p>
+
+    <p>“What was left went to the West Outpost. That’s the refugee dump. I heard they could use some extra helping hands to help out.”</p>
+
+    <p>Dren said, “We can’t go. We barely had time to do our annual report of The Glare. We have a lot of work back in Sotha Bal too. We are struggling too you know, even without a landslide.”</p>
+
+    <p>“Yeah,” the officer said. “The lands hate us for some reason. It’s like the world is flaring up in a fever, trying to burn us out.”</p>
+
+    <p>“The lands hate us? Or the demon is trying to consume us?”</p>
+
+    <p>Sheo nudged Dren. “Enough with the demon shit.”</p>
+
+    <p>Dren took a sip of the tea. “So who killed the hyena?”</p>
+
+    <p>“Even if demons were real it wouldn’t use a fucking spear.”</p>
+
+    <p>The officer butted in. “So listen, you can both stay here for the night if you want. I’m not investigating a hyena. Whoever did it can starve out in the wastes. I don’t care.”</p>
+
+    <p>"Why would anyone even come out here?" Dren said.</p>
+
+    <p>"Well... we're out here too, unfortunately." The officer stood and left the tent.</p>
+
+    <p>The evening faded. The men argued over demons and fate. Dren kept coming back to the spear. Then they slept.</p>
+
+    <p>In the morning the hyena was still there. Same spear. Same flies. The officer walked past it without looking. They headed northwest toward Sotha Bal.</p>
+
+    <p>Forty kilometers in the dry heat. Another full day of walking. The land got a little more hydrated as they went. Farms, ponds, creeks... they weren't thriving, but it was at least a minimum. They spent the night at a small rest stop campsite along the way. Next morning they came into Sotha Bal with the sun already high.</p>
+
+    <p>A thousand people, more or less. Pastures housed a less than desirable quantity of animals. Wells gave enough water if rationed properly. There were a few partially filled grain silos. Kids working on the fields instead of studying in school.</p>
+
+    <p>Dren and Sheo had their own separate dwellings, living their individual lives. Work was plenty. Maintenance, construction, farming, this and that. Weeks went by. They usually got supplies from the capital city of Veyloth, but it had been weeks since the last one was supposed to arrive.</p>
+
+    <p>After a while, people said the road was slow. A few more weeks went by, they said maybe next week. Another month gone by. Dren was done waiting.</p>
+
+    <p>He found Sheo at the well.</p>
+
+    <p>“I’m going to Veyloth.”</p>
+
+    <p>Sheo wound the rope and did not look up yet.</p>
+
+    <p>“That’s a couple days.”</p>
+
+    <p>“Fifty-five kilometers. I know. I’m going anyway. Someone has to ask what they’re doing.”</p>
+
+    <p>Sheo set the bucket down.</p>
+
+    <p>“Sotha Bal needs the hands, Dren.”</p>
+
+    <p>“Then you stay. I’m not asking you to come.”</p>
+
+    <p>Sheo looked at him a long time.</p>
+
+    <p>“Alright. Well, are you gonna take Betty?”</p>
+
+    <p>Dren looked over at the thin mustang in the yard.</p>
+
+    <p>“Yeah.”</p>
+
+    <p>"Well... make sure you feed her..."</p>
+
+    <p>"Yeah, I'll get her some food along the way."</p>
+
+    <p>Dren rode Betty out in the morning. Fifty-five kilometers. He walked her through the worst of the heat and slept on the road. He reached Veyloth the next afternoon.</p>
+
+    <p>The south road was much more saturated with farms, smaller settlements, and production buildings. As Veyloth came up over the horizon, the homeless encampments showed first, then the smell of smoke and sewage, then the noise, then the layers of slums. Fifty thousand people crammed into a few square miles, and it felt like more.</p>
+
+    <p>Most of it was a ghetto. Streets so narrow you had to turn sideways for a cart, jammed wheel to wheel in the muck. Sewer ran in an open ditch down the middle and people would walk over it. Smoke sat in the lanes and didn’t lift. Cooking smoke, shit-smoke, something sweet and rotten underneath that was probably meat, or had been.</p>
+
+    <p>Trash everywhere. Rags, bones, broken clay, wet straw, building debris, mud, dirt. Houses leaned on each other. Plaster gone. Roofs patched with whatever garbage can be salvaged from the streets. Crowds of people lying in the shade, seeking shelter from the relentless sun.</p>
+
+    <p>Dren bought some old wheat off a street vendor for a very low price... probably stolen, fed it to Betty.</p>
+
+    <p>As his horse ate its meal, Dren observed the hungry people. Too many of them. Kids with swollen bellies and thin arms, working the crowd for anything that wasn’t nailed down. No stray animals. Not a dog, not a cat, not a rat you could see in daylight. Locals would eat any pet wandering around. You saw it in the bones in the ditch, and in how fast a bag of spilled seeds disappeared.</p>
+
+    <p>The heat was different from The Glare. Out there it was clean and empty. Here it was wet, humid and claustrophobic and it stank.</p>
+
+    <p>"Hey, how much for that horse?" asked a ragged man stoking a campfire.</p>
+
+    <p>Dren clicked his teeth. "Tsk... filthy goof..." He kept moving through the tight alleyways of the city.</p>
+
+    <p>Dren and Betty climbed toward the official district because that’s where Census and Excise sat, and the streets opened a little. Cleaner stone. Wider lanes. A fountain in a square that wasn’t running, just a dry bowl with yellow scum at the bottom. From up here, if you didn’t look too hard, it almost looked like a capital. Grid of streets. Old public buildings with columns and high doors. A bit posh next to the rest.</p>
+
+    <p>Census and Excise was one of those old halls. The official agency for tracking citizen headcounts, collecting taxes, managing tariffs, and issuing trade. Inside, the ceiling was high and stained, a brown tide-mark where rain had been getting in for years. Light came through the shutters in stripes across the floor. Horizontal planks, badly fitted. You could see dust moving in the beams.</p>
+
+    <p>Desks. Queues. Paper. People waiting to argue about grain weights and missing names.</p>
+
+    <p>Guards at the inner door asking where you were from. Dren said Sotha Bal and they looked at him like another hobo coming in from the slums.</p>
+
+    <p>Dren waited. The clerk he finally got was in an exquisite purple coat.</p>
+
+    <p>"I'm from Sotha Bal, we've been waiting on our quarterly supply shipment, it's like... two months late now, what's going on?"</p>
+
+    <p>“You’re here about the southern allotment,” the clerk said, already tired of it. “Everybody south of the river is here about the southern allotment.”</p>
+
+    <p>“Yeah... so where is it?” Dren demanded.</p>
+
+    <p>The clerk tapped a notice pinned at eye level. Trovgar, The Far East Market. Neighboring trade. Disasters. Routes blocked. Catastrophes, if you wanted the word they used. Flies on that paper too.</p>
+
+    <p>“There's been a big storm, caused some floods and landslides on the east and west ends of the region,” the clerk said. “Nothing is coming in or out, trade is cut off, Trovgar, The Far East Market is dry, you just have to wait till the trade route is clear.”</p>
+
+    <p>“So you’re just not sending anything,” Dren said.</p>
+
+    <p>“Unless you have extra cash, you could fund the supplies yourself.” He dipped the pen, made a mark, dipped again.</p>
+
+    <p>"We pay enough in taxes for this already! We barely have anything left..."</p>
+
+    <p>"Well that tax money will be allocated appropriately to help with the current shortage."</p>
+
+    <p>"Does that shortage help include Sotha Bal?"</p>
+
+    <p>"That is to be decided and calculated by the officials... you'll have to wait it out."</p>
+
+    <p>Out in the yard somebody started shouting as a fight broke out. The clerk shut his eyes for a second.</p>
+
+    <p>Dren looked over at Betty waiting outside, making sure she was still there.</p>
+
+    <p>Dren turned back to the clerk, leaned in on the counter. The wood was sticky, gross.</p>
+
+    <p>“So what is the government doing? People are going to starve.”</p>
+
+    <p>“The government has enforced a new work policy on the city of Drenovar to increase productivity for the region,” the clerk said.</p>
+
+    <p>“And Gor Vhuul? West Outpost. They getting anything?”</p>
+
+    <p>The clerk hesitated. “Drenovar's primary supplies are dedicated for Veyloth.”</p>
+
+    <p>“Meaning everyone else starves,” Dren said.</p>
+
+    <p>"So what do you propose?" the clerk asked.</p>
+
+    <p>“Go into the jungle. Get resources. Pick up the slack.”</p>
+
+    <p>The clerk looked at him like Dren had asked him to fly.</p>
+
+    <p>“Nobody goes in the jungle. You know this. Too dangerous. Number you’d send in to die would outweigh the number you might save. Especially now, low on supplies. Any group that enters the jungle is a suicide sentence.”</p>
+
+    <p>“You’ve never even tried,” Dren said.</p>
+
+    <p>“People have tried. They don’t come back.” The clerk stacked his paperwork and put it aside. "Why don't you go in the jungle... anyways, you clearly don't have extra money for supplies, and I don't have all day for this pity party... NEXT.” He waved his hand at Dren, calling for the next person in line.</p>
+
+    <p>Dren walked out of the building into the street, frustrated.</p>
+
+    <p>He moped around on horseback in the city for a short while and headed north. Forty-five kilometers of farmland. He slept once on the road and rode into Drenovar the next day. The jungle sat on the horizon like a mountain range, spanning infinitely from left to right.</p>
+
+    <p>Drenovar was busy and ugly. A production town run like a slave camp. Laboring, workshops, overtime, wagons leaving for Veyloth loaded and coming back empty. Five thousand people and it felt like twice that, all of them working, extra time for hobbies was a luxury.</p>
+
+    <p>Dren tied Betty up in a horse pen outside the trade district before walking in.</p>
+
+    <p>The goods market was a hall, high and loud, packed like those old trade houses you hear about, stalls in rows, farmers, merchants, laborers, sacks of grain, hanging meat, people bumping past with loads, shouting prices.</p>
+
+    <p>Dren found a farm stall.</p>
+
+    <p>A young man was there. Hands stained from the work. Selling farm goods like he’d been doing it for years.</p>
+
+    <p>“Dad!” the young man exclaimed.</p>
+
+    <p>“Hey,” said Dren. “How are you doing, son.”</p>
+
+    <p>“Good. You know. Busy.” James came around the stall and they shook hands. “You look like shit.”</p>
+
+    <p>“Hah. Veyloth will do that to a man.” Dren laughed.</p>
+
+    <p>James nodded. He knew Veyloth as well... those slums were notorious.</p>
+
+    <p>“I know you had to leave Sotha Bal,” Dren said.</p>
+
+    <p>“Yeah. There was no opportunity. Same as when I left. It’s worse now, I hear.”</p>
+
+    <p>“It is. I had to bring Betty along just to feed her, we didn't have anything for her to eat back home.”</p>
+
+    <p>A woman came by mid-discussion, bought some vegetables and moved on. James wrapped them without looking, by feel.</p>
+
+    <p>“Your mother would have been so proud,” Dren said.</p>
+
+    <p>James looked at the boards of the stall for a moment.</p>
+
+    <p>“Yeah. I know.”</p>
+
+    <p>Dren waited until the aisle thinned a little.</p>
+
+    <p>“Official runs are dead. I need you to send me back loaded. Same as always.”</p>
+
+    <p>James’s hands stopped.</p>
+
+    <p>“I can’t.”</p>
+
+    <p>“James.”</p>
+
+    <p>“It’s illegal.”</p>
+
+    <p>Dren almost laughed, then didn’t, because James was not joking.</p>
+
+    <p>“Oh come on. That wasn’t an issue last times.”</p>
+
+    <p>James lowered his voice and glanced down the aisle.</p>
+
+    <p>“This is different. Trade shortage. Officials aren’t relaxed like they used to be. Security and intelligence are at an all-time high. They’re watching the hall. They’re watching the wagons. It’s sketchy right now. It’s not the time to get away with it.”</p>
+
+    <p>“Sotha Bal is going to dry up.”</p>
+
+    <p>“I know.”</p>
+
+    <p>“Fine,” Dren said. “I’ll go back and tell Sheo we have to figure it out some other way.”</p>
+
+    <p>They talked a bit more before he left. The stall. The hours. Who’d been pulled for extra labor. Then James inquired, “How’s Sheo’s family.”</p>
+
+    <p>He actually wanted to know.</p>
+
+    <p>“Alive,” Dren said. “Not doing good. Struggling. Same as everyone else.”</p>
+
+    <p>James nodded. Stepped in closer. Dropped his voice further.</p>
+
+    <p>“Come back in a month. I can’t promise it’ll be good. Maybe I can arrange some shipment pickup. You’re gonna have to bring it back yourself. And if you get caught, we can just say you stole it. Blame’s on you.”</p>
+
+    <p>Dren looked at him.</p>
+
+    <p>“A month.”</p>
+
+    <p>“A month. That’s the best I can do, it's too crazy right now.”</p>
+
+    <p>“Alright.”</p>
+
+    <p>Dren and James wrapped up their conversation, said goodbye, and Dren rode Betty back to Sotha Bal. Another two days on the road.</p>
+
+    <p>As he arrived back, he found Sheo behind the house, mending a yoke.</p>
+
+    <p>“Well?” Sheo said.</p>
+
+    <p>“Veyloth’s got nothing. Trovgar, The Far East Market is dry. They’re squeezing Drenovar to feed everybody. They don't even care about the West Outpost. Jungle they won’t touch. Suicide, they said.”</p>
+
+    <p>"Why would you even mention the jungle? Obviously nobody is going in there," Sheo said.</p>
+
+    <p>“The military was everywhere, James couldn't give us any supplies without big risks of getting caught... He said to come back in a month, and maybe he'll have something.”</p>
+
+    <p>Sheo set the yoke down harder than he needed to.</p>
+
+    <p>“Maybe.”</p>
+
+    <p>“That’s what I said.”</p>
+
+    <p>“I don’t like maybe, Dren.”</p>
+
+    <p>“There isn’t anything else.”</p>
+
+    <p>Sheo wiped his hands on his trousers.</p>
+
+    <p>“A month is a long time here, we're already out of bare basic necessities.”</p>
+
+    <p>“I know.”</p>
+
+    <p>They sat with it anyway.</p>
+
+    <p>The month in Sotha Bal was rough.</p>
+
+    <p>A man named Orlen got killed over water rations at the well. They buried him in the morning and posted a watch on the water after that. People barely talked about him as they had other worries.</p>
+
+    <p>Sand storms blowing through, wrecking farmland, blowing loose siding and roofing off buildings, demanding more maintenance. The pasture animals were starving. Still nothing from Veyloth.</p>
+
+    <p>When the month was up, Dren packed. Sheo came with him this time. They took Betty, but they walked. She was starved and weak. They just took her to get her fed, and maybe to carry some supplies on her back. Forty-five kilometers. Two days on foot in the heat.</p>
+
+    <p>They eventually arrived at Drenovar, and smelled the smoke before they saw the hall.</p>
+
+    <p>Drenovar was still standing. The market was not. Broken stalls, boards nailed up, glass and pottery in the aisles. People sweeping, hauling debris, arguing over what was theirs. Guards where there had been merchants.</p>
+
+    <p>Dren and Sheo rushed over to the trade district.</p>
+
+    <p>James’s stall was a wreck. Canvas torn. The counter split. Nobody behind it.</p>
+
+    <p>A woman mending a neighboring canvas looked up when Dren said the name.</p>
+
+    <p>“James?”</p>
+
+    <p>She stopped sewing.</p>
+
+    <p>“You’re his father.”</p>
+
+    <p>“Where is he.”</p>
+
+    <p>“He was murdered in the riot three days ago... I’m sorry.”</p>
+
+    <p>Dren didn’t move, eyes widened, body frozen, heart sank...</p>
+
+    <p>Sheo said, “What happened.”</p>
+
+    <p>“The slums out of Veyloth had an uprising. They marched over here and rioted the market. Pillaged and ransacked the whole market, killed a bunch of guards, laborers and shop keepers - including James."</p>
+
+    <p>Dren sat down on a crate. Sat there. Hammers, voices, somebody crying further down the row.</p>
+
+    <p>Sheo put a hand on his shoulder.</p>
+
+    <p>Dren put his face in his hands and stayed there a long time.</p>
+
+    <p>Sheo talked to the woman. Dates. Where they’d put the body. A common pit outside the north wall, with the others from the riot. Too many for separate graves.</p>
+
+    <p>Dren went there later that day. Sheo went with him. There was nothing to see that was James, just a hole in the ground with a few hundred corpses thrown in like trash.</p>
+
+    <p>Eventually, they headed to James' home, a shack in the outskirts of Drenovar. They slept there for a few days. Sheo would go to the market stalls to help out with repairs. He would also stash many items to smuggle back to James' shack, which he could bring back to Sotha Bal.</p>
+
+    <p>Dren didn’t leave the shack, didn't eat much. He'd just sit in the living room and stare at the wall. Agony first. Then it went flat. Lowest point. Emptied out. A shelled out husk of a man.</p>
+
+    <p>After about a week, Sheo had gathered an impressive cache of supplies from helping out at the market.</p>
+
+    <p>“I’m taking the cart home,” Sheo said. “Sotha Bal can use it. It's a pretty good haul.”</p>
+
+    <p>Dren nodded once.</p>
+
+    <p>“I’m not going with you.”</p>
+
+    <p>Sheo waited.</p>
+
+    <p>“I’m going into the jungle,” Dren said. “I have nothing left. Your family’s still dying by inches the same as mine did. Maybe I can find something. Anything. Literally anything helpful. I have to try.”</p>
+
+    <p>“That’s a suicide mission. It’s stupid. You’re just gonna die.”</p>
+
+    <p>“Then I die.”</p>
+
+    <p>Sheo stepped in front of him.</p>
+
+    <p>“Come home. Help me with the cart. We figure it out there.”</p>
+
+    <p>Dren sat in silence. Still unmoved from the chair he'd sat in for the past week.</p>
+
+    <p>“Sorry. My family is still alive. I can’t go into the jungle with you.”</p>
+
+    <p>Sheo let out a breath.</p>
+
+    <p>“If you’re going anyway, I swiped a few things from the market that will help you more than me.” He put a pack of small ribbons in Dren’s hand. Cloth strips, cheap, a lot of them. “Tie them on the branches along the way so you don’t get lost. That’s all I can give you that isn’t me.”</p>
+
+    <p>Dren closed his fist on the pack.</p>
+
+    <p>Sheo then pulled out a bottle of fine rye whisky. "This will keep the demons away."</p>
+
+    <p>Dren took the bottle, opened it, and drank. Sank back into the chair.</p>
+
+    <p>Sheo unwrapped a sword. Long steel. Well made. The kind of blade that came off a high-end stall, not a farm counter. No glow. No trick. Just metal.</p>
+
+    <p>Dren held it. His hands were still shaking.</p>
+
+    <p>"Where did you find this?"</p>
+
+    <p>"One of the better stalls," Sheo said. "Whoever crafted it was killed in the riot."</p>
+
+    <p>"Hopefully it'll keep me alive then."</p>
+
+    <p>"Yeah. Here's a satchel of some other basic survival supplies." Sheo handed him the rest.</p>
+
+    <p>“Alright... I'd better head back to Sotha Bal, but if you're going into the jungle, what are we gonna do with the deed to James' property?”</p>
+
+    <p>Dren looked around the house, found parchment paper and an inkwell pen, and scribbled a deed sale to Sheo.</p>
+
+    <p>"Here Sheo, I have officially sold James home to you and your family."</p>
+
+    <p>Like a friend committing suicide and giving all their belongings away- Sheo couldn't take this gift joyfully, but he did.</p>
+
+    <p>"I'm sorry-" said Sheo, with sadness in his voice.</p>
+
+    <p>Sheo hauled his cache of supplies and loaded them on a cart, tied it to Betty and headed south, back home towards Sotha Bal, toward a family that was still alive.</p>
+
+    <p>Dren sat in depression, apathy embracing his soul... he spent another couple days in James' shack... which was now officially, Sheo's shack.</p>
+
+    <p>Eventually, Dren mustered his courage, and headed out towards the jungle.</p>
+
+    <p>As he left the city of Drenovar, the north road thinned into a track, later engulfed by an overgrowth of ferns and palm.</p>
+
+    <p>Wooden signs were nailed up all along the way. TURN BACK. DANGER. Warning after warning, some rotting, some still new. And graves. A bunch of them. Little mounds, stacked stones, names carved into boards for people who'd gone in and never come back.</p>
+
+    <p>Then the sound of water.</p>
+
+    <p>The Green River came out of the trees. Wide enough. Fast enough. Green in the way of water that’s been under leaves a long time.</p>
+
+    <p>He stopped at the foot of it.</p>
+
+    <p>He hadn’t seen water move like that since he was a boy. Not the wells. Not the ration buckets. Not the scum in Veyloth’s fountain. This was the creek. The one Sheo had pointed at, the sandy ditch, the crawfish, the rabbit in the bush. Except the creek had kept growing after they left, gone into the wall, and come back out like this.</p>
+
+    <p>He knelt and put his hand in. Cold. Clean. It pulled at his fingers, headed south, toward all the places that didn’t have it. Orlen had died for a bucket of water. Sotha Bal would kill for this. And here it was, free, pouring out of the one direction everybody said was suicide.</p>
+
+    <p>Dren thought of the demon. The one sucking the moisture and life out of the lands. If that were true, this is where it had been taking it. Thirty years of missing rain, missing grass, missing home. All of it coming out of the trees in one green line.</p>
+
+    <p>He looked up.</p>
+
+    <p>The jungle went up in front of him like a hundred-floor building. Canopy on canopy, stacked, dark, trunks disappearing into their own shade. It ran forever to the left. Forever to the right. Birds somewhere high up. Wet earth and rot. The wall of it ate the sky.</p>
+
+    <p>The river was the only green thing left that still moved. You could drink it. You could follow it. You could tell yourself it was a way in, or a way out, or a gift. It didn’t care. It just came on, the way it had been coming on before Ral Koda had a name, and it would still be coming on after Dren was a mark on a branch somewhere inside.</p>
+
+  </article>
+</body>
+</html>
+
