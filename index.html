@@ -68,8 +68,10 @@
       border-bottom: 1px solid #ded6c8;
     }
     ol.toc a {
-      display: block;
-      padding: 1.15rem 0.4rem;
+      display: flex;
+      align-items: baseline;
+      gap: 1rem;
+      padding: 1.1rem 0.4rem;
       text-decoration: none;
       color: inherit;
     }
@@ -77,31 +79,15 @@
       background: #ebe4d7;
     }
     ol.toc .num {
-      display: block;
+      flex: 0 0 3.5rem;
       font-size: 0.75rem;
       letter-spacing: 0.18em;
       text-transform: uppercase;
       color: #9a9082;
-      margin-bottom: 0.3rem;
     }
     ol.toc .name {
-      display: block;
       font-size: 1.35rem;
       line-height: 1.25;
-    }
-    ol.toc .line {
-      display: block;
-      margin-top: 0.35rem;
-      color: #6b6355;
-      font-size: 0.95rem;
-      font-style: italic;
-    }
-    footer.note {
-      margin: 3.2rem 0 0;
-      text-align: center;
-      color: #9a9082;
-      font-size: 0.85rem;
-      letter-spacing: 0.08em;
     }
   </style>
 </head>
@@ -118,54 +104,46 @@
       <p>Ten steps in, he cannot see the river. Twenty steps in, he cannot see the ribbon.</p>
     </header>
 
-    <h2 class="contents">Contents</h2>
+    <h2 class="contents">Chapters</h2>
 
     <ol class="toc">
       <li>
         <a href="the-green-river.html">
           <span class="num">One</span>
           <span class="name">The Green River</span>
-          <span class="line">Thirty years of missing rain, and one man who decides to go and find out where it went.</span>
         </a>
       </li>
       <li>
         <a href="the-emerald-abyss.html">
           <span class="num">Two</span>
           <span class="name">The Emerald Abyss</span>
-          <span class="line">There is no door. He picks a gap between two trunks at the water and pushes through.</span>
         </a>
       </li>
       <li>
         <a href="the-turquoise-coast.html">
           <span class="num">Three</span>
           <span class="name">The Turquoise Coast</span>
-          <span class="line">The river stops being a river, and the thing beyond it is not the sky.</span>
         </a>
       </li>
       <li>
         <a href="the-road-home.html">
           <span class="num">Four</span>
           <span class="name">The Road Home</span>
-          <span class="line">Nine years is long enough for a country to change hands.</span>
         </a>
       </li>
       <li>
         <a href="the-sand-war.html">
           <span class="num">Five</span>
           <span class="name">The Sand War</span>
-          <span class="line">Nobody will listen. So he stops asking.</span>
         </a>
       </li>
       <li>
         <a href="the-great-trek.html">
           <span class="num">Six</span>
           <span class="name">The Great Trek</span>
-          <span class="line">Five hundred and sixty kilometers, in irons, toward a place only one of them has seen.</span>
         </a>
       </li>
     </ol>
-
-    <footer class="note">More to come.</footer>
 
   </div>
 </body>
